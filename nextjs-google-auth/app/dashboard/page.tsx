@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
+import LogoutButton from "./LogoutButton";
 
 // Sc.3: ruta protegida - requiere sesion activa
 export default async function DashboardPage() {
@@ -33,22 +34,25 @@ export default async function DashboardPage() {
             </svg>
             Gestor de Inversiones
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem",
-            background: "#F1F5F9", borderRadius: "100px",
-            padding: "0.25rem 0.875rem 0.25rem 0.25rem" }}>
-            {userImage ? (
-              <img src={userImage} alt={userName}
-                style={{ width: 28, height: 28, borderRadius: "50%", objectFit: "cover" }} />
-            ) : (
-              <div style={{ width: 28, height: 28, borderRadius: "50%", background: "#0F172A",
-                color: "#E2E8F0", display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "0.75rem", fontWeight: 600 }}>
-                {initials}
-              </div>
-            )}
-            <span style={{ fontSize: "0.8125rem", fontWeight: 500, color: "#334155" }}>
-              {userName}
-            </span>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem",
+              background: "#F1F5F9", borderRadius: "100px",
+              padding: "0.25rem 0.875rem 0.25rem 0.25rem" }}>
+              {userImage ? (
+                <img src={userImage} alt={userName}
+                  style={{ width: 28, height: 28, borderRadius: "50%", objectFit: "cover" }} />
+              ) : (
+                <div style={{ width: 28, height: 28, borderRadius: "50%", background: "#0F172A",
+                  color: "#E2E8F0", display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: "0.75rem", fontWeight: 600 }}>
+                  {initials}
+                </div>
+              )}
+              <span style={{ fontSize: "0.8125rem", fontWeight: 500, color: "#334155" }}>
+                {userName}
+              </span>
+            </div>
+            <LogoutButton />
           </div>
         </div>
       </header>
