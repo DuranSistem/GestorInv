@@ -43,8 +43,8 @@ export const authOptions: NextAuthOptions = {
           return true; // Permite el login, redirige al dashboard
         }
 
-        // Sc.4: usuario nuevo → redirigir a registro con datos pre-cargados
-        return `/register-google?email=${encodeURIComponent(user.email!)}&nombre=${encodeURIComponent(user.name ?? "")}&avatar=${encodeURIComponent(user.image ?? "")}&googleId=${encodeURIComponent(profile?.sub ?? "")}`;
+        // Sc.4: usuario nuevo → pasar datos via cookie HTTP-only (no URL params) y redirigir a registro
+        return `/api/auth/register-pending?email=${encodeURIComponent(user.email!)}&nombre=${encodeURIComponent(user.name ?? "")}&avatar=${encodeURIComponent(user.image ?? "")}&googleId=${encodeURIComponent(profile?.sub ?? "")}`;
 
       } catch (error) {
         console.error("Error en signIn callback:", error);
